@@ -242,7 +242,7 @@ class _AddRequirementsScreenState extends State<AddRequirementsScreen> {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     textDirection: TextDirection.ltr,
-                                    (),
+                                    ('$selectedItem'),
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),

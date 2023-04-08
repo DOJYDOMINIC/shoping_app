@@ -68,22 +68,21 @@ class _AddRequirementsScreenState extends State<AddRequirementsScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          // TextField(
-                          //   decoration: const InputDecoration(
-                          //     focusedBorder: OutlineInputBorder(
-                          //       borderSide:
-                          //       BorderSide(color: Colors.blue, width: 2.0),
-                          //     ),
-                          //     enabledBorder: OutlineInputBorder(
-                          //       borderSide: BorderSide(
-                          //           color: Color.fromARGB(255, 97, 61, 230),
-                          //           width: 2.0),
-                          //     ),
-                          //     hintText: 'Enter Your Item ',
-                          //   ),
-                          //   controller: itemName,
-                          // ),
-
+                          TextField(
+                            decoration: const InputDecoration(
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                BorderSide(color: Colors.blue, width: 2.0),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromARGB(255, 97, 61, 230),
+                                    width: 2.0),
+                              ),
+                              hintText: 'Enter Your Item ',
+                            ),
+                            controller: itemName,
+                          ),
                           const SizedBox(
                             height: 15,
                           ),

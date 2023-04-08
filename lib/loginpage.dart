@@ -77,7 +77,7 @@ class _LoginFormState extends State {
                 ),
                 textInputAction: TextInputAction.done,
                 validator: (password) {
-                  if (password!.isEmpty || password.length < 6) {
+                  if (password!.isEmpty) {
                     return 'Enter a valid password , length  should be greater than 6';
                   } else {
                     return null;

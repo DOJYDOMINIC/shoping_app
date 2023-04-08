@@ -6,20 +6,25 @@ import 'constant.dart';
 import 'models/requirements_model.dart';
 
 class AddRequirementsScreen extends StatefulWidget {
-  const AddRequirementsScreen({Key? key, required this.shopIndex})
+  const AddRequirementsScreen({Key? key, required this.shopIndex,})
       : super(key: key);
   final int shopIndex;
 
   @override
   State<AddRequirementsScreen> createState() => _AddRequirementsScreenState();
 }
-
-
 class _AddRequirementsScreenState extends State<AddRequirementsScreen> {
+  List<Map<String, dynamic>> items = [
+    {'itmname': 'Apple', 'itmprice': 10.99},
+    {'itmname': 'Orange', 'itmprice': 19.99},
+    {'itmname': 'Pinaple', 'itmprice': 7.99},
+    {'itmname': 'Grapes', 'itmprice': 14.99},
+    {'itmname': 'Mango', 'itmprice': 16.99},
+  ];
 
-  List item_name = ['apple', 'Orange', 'Pinaple', 'Grapes', 'mango'];
-
-  List item_amt = [54, 45, 35, 48, 36];
+  String selectedItem = 'Apple';
+  double itemPrice = 10.99;
+  // TextEditingController itemRate = TextEditingController();
   num sum = 0.0;
 
   getTotaAmount() {
@@ -32,6 +37,7 @@ class _AddRequirementsScreenState extends State<AddRequirementsScreen> {
     setState(() {
       sum = totalamount;
       totalamount = 0.0;
+      itemRate.text = itemPrice.toString();
     });
   }
 
@@ -68,20 +74,37 @@ class _AddRequirementsScreenState extends State<AddRequirementsScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          TextField(
-                            decoration: const InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                BorderSide(color: Colors.blue, width: 2.0),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Color.fromARGB(255, 97, 61, 230),
-                                    width: 2.0),
-                              ),
-                              hintText: 'Enter Your Item ',
-                            ),
-                            controller: itemName,
+                          // TextField(
+                          //   decoration: const InputDecoration(
+                          //     focusedBorder: OutlineInputBorder(
+                          //       borderSide:
+                          //       BorderSide(color: Colors.blue, width: 2.0),
+                          //     ),
+                          //     enabledBorder: OutlineInputBorder(
+                          //       borderSide: BorderSide(
+                          //           color: Color.fromARGB(255, 97, 61, 230),
+                          //           width: 2.0),
+                          //     ),
+                          //     hintText: 'Enter Your Item ',
+                          //   ),
+                          //   controller: itemName,
+                          // ),
+                          DropdownButton(
+                            value: selectedItem,
+                            items: items.map((item) {
+                              return DropdownMenuItem(
+                                child: Text(item['itmname']),
+                                value: item['itmname'],
+                              );
+                            }).toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedItem = value.toString();
+                                itemPrice = items
+                                    .firstWhere((item) => item['itmname'] == value)['itmprice'];
+                                itemRate.text = itemPrice.toString();
+                              });
+                            },
                           ),
                           const SizedBox(
                             height: 15,
@@ -219,10 +242,7 @@ class _AddRequirementsScreenState extends State<AddRequirementsScreen> {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     textDirection: TextDirection.ltr,
-                                    shopsList[widget.shopIndex]['Requirements']
-                                    [index]
-                                        .itemName
-                                        .toString(),
+                                    (),
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
